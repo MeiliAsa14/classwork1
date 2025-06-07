@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self Introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('Whalebackground.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .overlay {
+            background: rgba(10, 30, 60, 0.7);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: 
+            transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1),
+            box-shadow 0.3s cubic-bezier(0.4, 0.2, 0.2, 1),
+            opacity 0.3s,
+            border-color 0.5s;
+            border: 6px solid transparent;
+            background: 
+            linear-gradient(135deg, #ff005a, #ffbe00, #00ff85, #00cfff, #a259ff, #ff005a) border-box,
+            #fff padding-box;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .profile-img:hover,
+        .profile-img:active {
+            transform: scale(1.08) rotate(-20deg);
+            box-shadow: 0 8px 24px 0 rgba(30, 58, 92, 0.35);
+        }
+        .profile-img.changing {
+            animation: imgChange 0.5s;
+            box-shadow: 0 12px 32px 0 rgba(12, 28, 49, 0.5);
+        }
+        .profile-img.fade-out {
+            opacity: 0;
+        }
+        .profile-img.fade-in {
+            opacity: 1;
+        }
+        @keyframes imgChange {
+            0% { transform: scale(1) rotate(0deg);}
+            30% { transform: scale(1.12) rotate(8deg);}
+            60% { transform: scale(0.95) rotate(-8deg);}
+            100% { transform: scale(1) rotate(0deg);}
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        p {
+            margin: 8px 0;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <img src="Profile.jpg" alt="Your Profile" class="profile-img">
+        <h1 class="rainbow-text">Hello, I'm Meili</h1>
+        <p class="rainbow-text">I'm a 19-year-old Computer Science student at Assumption University, Thailand.</p>
+        <p class="rainbow-text">I love coding, stories, and quiet inspiration. Welcome to my page — a space shaped by curiosity, kindness, and a touch of magic.</p>
+        <a href="https://github.com/MeiliAsa14" target="_blank" style="margin-top:18px; color:#fff; background:#00cfff; padding:10px 22px; border-radius:8px; font-weight:bold; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.18); transition:background 0.2s;">
+            Visit my GitHub
+        </a>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .rainbow-text {
+            background: linear-gradient(90deg, #4fdcff, #7ffcff, #4faaff, #338fff, #1e6fff, #4fdcff);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 5s linear infinite;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive, 'Quicksand', Arial, sans-serif;
+            letter-spacing: 1.5px;
+        }
+        .overlay h1 {
+            font-family: 'Pacifico', cursive, 'Quicksand', Arial, sans-serif;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        .overlay p {
+            font-family: 'Quicksand', Arial, sans-serif;
+            font-size: 1.05em;
+            letter-spacing: 1px;
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+    <script>
+        const profileImg = document.querySelector('.profile-img');
+        let isChanging = false;
+
+        profileImg.addEventListener('click', () => {
+            if (isChanging) return;
+            isChanging = true;
+            profileImg.classList.add('changing', 'fade-out');
+
+            setTimeout(() => {
+                profileImg.src = 'NewProfile.jpg'; // Change to your new image
+                profileImg.classList.remove('fade-out');
+                profileImg.classList.add('fade-in');
+            }, 500);
+
+            setTimeout(() => {
+                profileImg.classList.remove('changing', 'fade-in');
+                isChanging = false;
+                profileImg.classList.add('fade-out');
+                setTimeout(() => {
+                    profileImg.src = 'Profile.jpg'; // Change back to original image
+                    profileImg.classList.remove('fade-out');
+                    profileImg.classList.add('fade-in');
+                }, 500);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
